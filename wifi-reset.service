@@ -2,9 +2,11 @@
 Description=Wireless Network Reset
 
 [Service]
-Type=oneshot
+Type=simple
+User=root
 RemainAfterExit=true
-ExecStart=/bin/bash /opt/wifi-reset/wifi-reset.sh
+ExecStartPre=/bin/sleep 30
+ExecStart=/usr/bin/sudo /bin/bash -lc /opt/wifi-reset/wifi-reset.sh
 
 [Install]
 WantedBy=multi-user.target
